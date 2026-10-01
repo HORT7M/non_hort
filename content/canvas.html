@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Canvas Demo</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8fafc; }
+    header { background: #1a1a2e; padding: 12px 20px; }
+    nav a { color: #fff; text-decoration: none; margin-right: 18px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .content { max-width: 800px; margin: 20px auto; padding: 0 20px; }
+    canvas { border: 1px solid #333; background: #fff; display: block; margin-bottom: 24px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../web.html">🏠 Home (web.html)</a>
+      <a href="image%20audio%20video.html">Image Audio Video</a>
+      <a href="svg.html">SVG</a>
+      <a href="embed%20object%20iframe.html">Embed / Iframe</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h1>Canvas Demo</h1>
+
+    <h2>1. Static Drawing</h2>
+    <!-- Canvas element: static shapes -->
+    <canvas id="drawing" width="600" height="300"></canvas>
+
+    <h2>2. Bouncing Ball Animation</h2>
+    <!-- Canvas element: animation -->
+    <canvas id="bounce" width="600" height="200"></canvas>
+  </div>
+
+  <script>
+    // ---------- Static drawing ----------
+    const canvas = document.getElementById('drawing');
+    const ctx = canvas.getContext('2d');
+
+    // Gradient background
+    const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    grad.addColorStop(0, '#e3f2fd');
+    grad.addColorStop(1, '#fce4ec');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Filled rectangle
+    ctx.fillStyle = '#0e4c9c';
+    ctx.fillRect(40, 40, 120, 80);
+
+    // Stroked rectangle
+    ctx.strokeStyle = '#e53935';
+    ctx.lineWidth = 4;
+    ctx.strokeRect(200, 40, 120, 80);
+
+    // Circle
+    ctx.beginPath();
+    ctx.arc(420, 80, 50, 0, Math.PI * 2);
+    ctx.fillStyle = '#43a047';
+    ctx.fill();
+
+    // Triangle (path)
+    ctx.beginPath();
+    ctx.moveTo(80, 260);
+    ctx.lineTo(140, 160);
+    ctx.lineTo(200, 260);
+    ctx.closePath();
+    ctx.fillStyle = '#fb8c00';
+    ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    ctx.moveTo(240, 260);
+    ctx.lineTo(560, 160);
+    ctx.strokeStyle = '#6a1b9a';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Text
+    ctx.font = 'bold 22px Arial';
+    ctx.fillStyle = '#212121';
+    ctx.fillText('Hello Canvas!', 300, 60);
+
+    // ---------- Bouncing ball animation ----------
+    const bc = document.getElementById('bounce');
+    const bctx = bc.getContext('2d');
+    const ball = { x: 60, y: 100, dx: 4, dy: 3, r: 20 };
+
+    function frame() {
+      bctx.clearRect(0, 0, bc.width, bc.height);
+
+      ball.x += ball.dx;
+      ball.y += ball.dy;
+      if (ball.x - ball.r < 0 || ball.x + ball.r > bc.width) ball.dx *= -1;
+      if (ball.y - ball.r < 0 || ball.y + ball.r > bc.height) ball.dy *= -1;
+
+      bctx.beginPath();
+      bctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+      bctx.fillStyle = '#e53935';
+      bctx.fill();
+
+      requestAnimationFrame(frame);
+    }
+    frame();
+  </script>
+</body>
+</html>

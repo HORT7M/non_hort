@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Images Demo - img.html</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f7fafc;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+        header {
+            background: #1a1a2e;
+            padding: 12px 20px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 18px;
+            font-weight: bold;
+        }
+        nav a:hover { text-decoration: underline; }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+        figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #cbd5e0;
+        }
+        figcaption {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #718096;
+        }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="web.html">🏠 Home (web.html)</a>
+            <a href="content/image%20audio%20video.html">Image Audio Video</a>
+            <a href="content/canvas.html">Canvas</a>
+            <a href="content/svg.html">SVG</a>
+            <a href="content/embed%20object%20iframe.html">Embed / Iframe</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>HTML5 Responsive Images Demo</h1>
+
+        <!-- Method 1: srcset and sizes -->
+        <div class="card">
+            <h2>Method 1: Using <code>srcset</code> and <code>sizes</code></h2>
+            <p>Provides multiple resolutions of the same image so the browser can download the optimal file size:</p>
+            <figure>
+                <img src="multimedia/image/FlagOfCambodia.png"
+                     srcset="multimedia/image/FlagOfCambodiaMobile.png 480w,
+                             multimedia/image/FlagOfCambodiaTablet.png 768w,
+                             multimedia/image/FlagOfCambodiaLarge.png 1200w"
+                     sizes="(max-width: 600px) 100vw, (max-width: 900px) 768px, 920px"
+                     alt="Flag of Cambodia (srcset)">
+                <figcaption>Browser dynamically chooses mobile (480w), tablet (768w), or large (1200w) image</figcaption>
+            </figure>
+        </div>
+
+        <!-- Method 2: <picture> element -->
+        <div class="card">
+            <h2>Method 2: Using the <code>&lt;picture&gt;</code> Element</h2>
+            <p>Art direction technique: Explicitly controls which image renders at specific media queries:</p>
+            <figure>
+                <picture>
+                    <source media="(max-width: 600px)" srcset="multimedia/image/FlagOfCambodiaMobile.png">
+                    <source media="(max-width: 900px)" srcset="multimedia/image/FlagOfCambodiaTablet.png">
+                    <img src="multimedia/image/FlagOfCambodiaLarge.png" alt="Flag of Cambodia (picture element)">
+                </picture>
+                <figcaption>&lt;picture&gt; element with media query breakpoints</figcaption>
+            </figure>
+        </div>
+    </div>
+</body>
+</html>

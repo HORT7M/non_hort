@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>សប្តាហ៍ទី៣ - HTML5 មេឌៀ និង ការបង្កប់</title>
+    <link href="https://fonts.googleapis.com/css2?family=Battambang&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Battambang', 'Khmer OS Battambang', serif; }
+    </style>
+</head>
+<body>
+
+    <!-- បឋមកថា -->
+    <header>
+        <h1>ក្រុងចតុមុខមង្គល សកលកម្ពុជាធិបតី សិរីធរៈបវរ ឥន្ទបត្តបុរី រដ្ឋរាជសីមា មហានគរ</h1>
+    </header>
+
+    <!-- របារមុខងារ -->
+    <nav>
+        <ul>
+            <li><a href="#images">រូបភាព</a></li>
+            <li><a href="#audio">សំឡេង</a></li>
+            <li><a href="#video">វីដេអូ</a></li>
+            <li><a href="#canvas">ផ្ទាំងគំនូរ</a></li>
+            <li><a href="#svg">SVG ក្រាហ្វិក</a></li>
+
+        </ul>
+    </nav>
+
+    <!-- មាតិកាសំខាន់ -->
+    <main>
+
+        <!-- ===== ផ្នែកទី១៖ រូបភាពឆ្លើយតប ===== -->
+        <section id="images">
+            <h2>១. រូបភាពឆ្លើយតប (Responsive Images)</h2>
+            <p class="section-desc">ប្រើ srcset/sizes សម្រាប់ជ្រើសរូបភាពតាមទំហំអេក្រង់ និង &lt;picture&gt; សម្រាប់កែសម្រួលរូបភាពតាមឧបករណ៍។</p>
+
+            <div class="two-col">
+
+                <!-- srcset + sizes -->
+                <div class="col-box">
+                    <h3>បច្ចេកទេស srcset និង sizes</h3>
+                    <div class="tags">
+                        <span>&lt;img&gt;</span>
+                        <span>srcset</span>
+                        <span>sizes</span>
+                    </div>
+
+                    <figure>
+                        <img
+                            src="multimedia/image/FlagOfCambodia.png"
+                            srcset="multimedia/image/FlagOfCambodiaMobile.png 480w,
+                                    multimedia/image/FlagOfCambodiaTablet.png 768w,
+                                    multimedia/image/FlagOfCambodiaLarge.png 1200w"
+                            sizes="(max-width: 480px) 100vw,
+                                   (max-width: 768px) 100vw,
+                                   1200px"
+                            alt="ទង់ជាតិកម្ពុជា ដែលមានប្រាសាទអង្គរវត្តនៅកណ្តាល"
+                        >
+                        <figcaption>ទង់ជាតិកម្ពុជា — កម្មវិធីរុករកវេបជ្រើសរើសរូបភាពល្អបំផុតតាមទំហំអេក្រង់ (480w / 768w / 1200w)</figcaption>
+                    </figure>
+
+                    <div class="note">
+                        <code>srcset</code> ប្រាប់កម្មវិធីរុករកវេបថាមានរូបភាពទំហំណាខ្លះ ហើយវាជ្រើសរើសរូបដែលសមស្រប។
+                    </div>
+                </div>
+
+                <!-- <picture> -->
+                <div class="col-box">
+                    <h3>ធាតុ &lt;picture&gt;</h3>
+                    <div class="tags">
+                        <span>&lt;picture&gt;</span>
+                        <span>&lt;source&gt;</span>
+                        <span>media</span>
+                    </div>
+
+                    <figure>
+                        <picture>
+                            <source media="(max-width: 480px)" srcset="multimedia/image/FlagOfCambodiaMobile.png">
+                            <source media="(max-width: 768px)" srcset="multimedia/image/FlagOfCambodiaTablet.png">
+                            <source media="(max-width: 1200px)" srcset="multimedia/image/FlagOfCambodiaLarge.png">
+                            <img src="multimedia/image/FlagOfCambodia.png" alt="ទង់ជាតិកម្ពុជា ប្រើធាតុ picture សម្រាប់កែសម្រួលរូបភាពតាមឧបករណ៍">
+                        </picture>
+                        <figcaption>ទង់ជាតិកម្ពុជា — កែសម្រួលតាម breakpoints នៅ 480px, 768px និង 1200px</figcaption>
+                    </figure>
+
+                    <div class="note">
+                        <code>&lt;picture&gt;</code> អនុញ្ញាតឱ្យយើងគ្រប់គ្រងពេញលេញថារូបភាពមួយណាត្រូវបង្ហាញនៅ breakpoint នីមួយៗ។
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== ផ្នែកទី២៖ កម្មវិធីចាក់សំឡេង ===== -->
+        <section id="audio">
+            <h2>២. កម្មវិធីចាក់សំឡេង (Audio Player)</h2>
+            <p class="section-desc">កម្មវិធីចាក់សំឡេង HTML5 ដែលភ្ជាប់មកជាមួយ — មិនត្រូវការកម្មវិធីជំនួយទេ។</p>
+
+            <div class="tags">
+                <span>&lt;audio&gt;</span>
+                <span>&lt;source&gt;</span>
+                <span>audio/mpeg</span>
+            </div>
+
+            <h3>នគររាជ — បទចម្រៀងជាតិកម្ពុជា</h3>
+
+            <figure>
+                <audio controls preload="metadata">
+                    <source src="multimedia/audio/NokorReach.mp3" type="audio/mpeg">
+                    កម្មវិធីរុករកវេបរបស់អ្នកមិនគាំទ្រធាតុ audio ទេ។
+                </audio>
+                <figcaption>"នគររាជ" — បទចម្រៀងជាតិនៃព្រះរាជាណាចក្រកម្ពុជា</figcaption>
+            </figure>
+
+            <div class="note">
+                <code>preload="metadata"</code> ផ្ទុកតែព័ត៌មានរយៈពេលប៉ុណ្ណោះ មិនផ្ទុកឯកសារសំឡេងទាំងមូលទេ ដើម្បីជួយឱ្យទំព័រផ្ទុកលឿន។
+            </div>
+        </section>
+
+        <!-- ===== ផ្នែកទី៣៖ កម្មវិធីចាក់វីដេអូ ===== -->
+        <section id="video">
+            <h2>៣. កម្មវិធីចាក់វីដេអូ (Video Player)</h2>
+            <p class="section-desc">វីដេអូ HTML5 ដែលមានរូបភាពបង្ហាញមុន (poster) និង ឆ្លើយតបតាមទំហំអេក្រង់។</p>
+
+            <div class="tags">
+                <span>&lt;video&gt;</span>
+                <span>&lt;source&gt;</span>
+                <span>poster</span>
+                <span>video/mp4</span>
+            </div>
+
+            <h3>ចម្រៀងជាតិកម្ពុជា</h3>
+
+            <figure>
+                <video controls preload="metadata" poster="multimedia/image/FlagOfCambodia.png">
+                    <source src="multimedia/video/NationalAnthemOfCambodia.mp4" type="video/mp4">
+                    កម្មវិធីរុករកវេបរបស់អ្នកមិនគាំទ្រធាតុ video ទេ។
+                </video>
+                <figcaption>ចម្រៀងជាតិកម្ពុជា — ប្រើទង់ជាតិជារូបភាពបង្ហាញមុន (poster)</figcaption>
+            </figure>
+
+            <div class="note">
+                គុណលក្ខណៈ <code>poster</code> បង្ហាញរូបភាពមួយមុនពេលវីដេអូចាក់ ដើម្បីឱ្យអ្នកប្រើឃើញរូបមុន។
+            </div>
+        </section>
+
+        <!-- ===== ផ្នែកទី៤៖ ផ្ទាំងគំនូរ Canvas ===== -->
+        <section id="canvas">
+            <h2>៤. ផ្ទាំងគំនូរ HTML5 (Canvas)</h2>
+            <p class="section-desc">គូររូបរាង និង ចលនាដោយប្រើ Canvas 2D API ជាមួយ JavaScript។</p>
+
+            <div class="two-col">
+
+                <!-- Canvas ១: រូបរាងថេរ -->
+                <div class="col-box">
+                    <h3>ផ្ទាំងគំនូរទី១ — រូបរាងថេរ</h3>
+                    <div class="tags">
+                        <span>&lt;canvas&gt;</span>
+                        <span>fillRect()</span>
+                        <span>arc()</span>
+                        <span>lineTo()</span>
+                        <span>fillText()</span>
+                    </div>
+
+                    <div class="canvas-center">
+                        <canvas id="canvasStatic" width="500" height="300">
+                            កម្មវិធីរុករកវេបរបស់អ្នកមិនគាំទ្រ canvas ទេ។
+                        </canvas>
+                    </div>
+                </div>
+
+                <!-- Canvas ២: ចលនា -->
+                <div class="col-box">
+                    <h3>ផ្ទាំងគំនូរទី២ — បាល់កំពុងលោត</h3>
+                    <div class="tags">
+                        <span>&lt;canvas&gt;</span>
+                        <span>requestAnimationFrame()</span>
+                        <span>ការរកឃើញការប៉ះ</span>
+                    </div>
+
+                    <div class="canvas-center">
+                        <canvas id="canvasAnim" width="500" height="300">
+                            កម្មវិធីរុករកវេបរបស់អ្នកមិនគាំទ្រ canvas ទេ។
+                        </canvas>
+                    </div>
+
+                    <div class="note">
+                        បាល់លោតនៅពេលប៉ះជញ្ជាំង និង ប្តូរពណ៌រាល់ពេលប៉ះ។
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== ផ្នែកទី៥៖ ក្រាហ្វិក SVG ===== -->
+        <section id="svg">
+            <h2>៥. ក្រាហ្វិក SVG ក្នុង HTML</h2>
+            <p class="section-desc">គំនូរវ៉ិចទ័រដែលអាចពង្រីកបាន គូរដោយផ្ទាល់ក្នុង HTML — មិនត្រូវការឯកសាររូបភាពទេ។</p>
+
+            <div class="two-col">
+
+                <!-- ការបង្ហាញរូបរាង SVG -->
+                <div class="col-box">
+                    <h3>ការបង្ហាញរូបរាង SVG</h3>
+                    <div class="tags">
+                        <span>&lt;rect&gt;</span>
+                        <span>&lt;circle&gt;</span>
+                        <span>&lt;ellipse&gt;</span>
+                        <span>&lt;line&gt;</span>
+                        <span>&lt;polygon&gt;</span>
+                        <span>&lt;polyline&gt;</span>
+                        <span>&lt;path&gt;</span>
+                        <span>&lt;text&gt;</span>
+                    </div>
+
+                    <div class="svg-center">
+                        <svg viewBox="0 0 520 300" width="500" height="290">
+                            <!-- ផ្ទៃខាងក្រោយ -->
+                            <rect width="520" height="300" fill="#f8faff" rx="5"/>
+
+                            <!-- ជួរទី១ -->
+                            <!-- ចតុកោណកែង -->
+                            <rect x="20" y="20" width="100" height="60" rx="10" ry="10" fill="#1a2a4a"/>
+                            <text x="70" y="105" text-anchor="middle" font-size="11" fill="#888">ចតុកោណ</text>
+
+                            <!-- រង្វង់ -->
+                            <circle cx="190" cy="50" r="35" fill="#2980b9"/>
+                            <text x="190" y="105" text-anchor="middle" font-size="11" fill="#888">រង្វង់</text>
+
+                            <!-- ពងក្រពើ -->
+                            <ellipse cx="310" cy="50" rx="55" ry="30" fill="#27ae60"/>
+                            <text x="310" y="105" text-anchor="middle" font-size="11" fill="#888">ពងក្រពើ</text>
+
+                            <!-- បន្ទាត់ -->
+                            <line x1="400" y1="25" x2="500" y2="80" stroke="#e74c3c" stroke-width="3"/>
+                            <text x="450" y="105" text-anchor="middle" font-size="11" fill="#888">បន្ទាត់</text>
+
+                            <!-- ជួរទី២ -->
+                            <!-- ពហុកោណ (ផ្កាយ) -->
+                            <polygon points="65,130 75,160 108,160 82,178 90,210 65,193 40,210 48,178 22,160 55,160" fill="#f0a500"/>
+                            <text x="65" y="240" text-anchor="middle" font-size="11" fill="#888">ពហុកោណ</text>
+
+                            <!-- បន្ទាត់ជាប់គ្នា -->
+                            <polyline points="145,210 165,140 185,200 205,150 225,190 245,135" fill="none" stroke="#8e44ad" stroke-width="3" stroke-linejoin="round"/>
+                            <text x="195" y="240" text-anchor="middle" font-size="11" fill="#888">បន្ទាត់ជាប់</text>
+
+                            <!-- ផ្លូវកោង (Q) -->
+                            <path d="M290,200 Q360,110 430,200" fill="none" stroke="#e67e22" stroke-width="3"/>
+                            <circle cx="290" cy="200" r="3" fill="#e67e22"/>
+                            <circle cx="430" cy="200" r="3" fill="#e67e22"/>
+                            <text x="360" y="240" text-anchor="middle" font-size="11" fill="#888">ផ្លូវកោង</text>
+
+                            <!-- អក្សរ -->
+                            <text x="485" y="170" text-anchor="middle" font-size="20" font-weight="bold" fill="#1a2a4a">SVG</text>
+                            <text x="485" y="190" text-anchor="middle" font-size="12" fill="#f0a500">អក្សរ</text>
+                            <text x="485" y="240" text-anchor="middle" font-size="11" fill="#888">text</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- ទង់ជាតិកម្ពុជា SVG -->
+                <div class="col-box">
+                    <h3>ទង់ជាតិកម្ពុជា (គំនូរ SVG)</h3>
+                    <div class="tags">
+                        <span>&lt;rect&gt;</span>
+                        <span>&lt;polygon&gt;</span>
+                        <span>&lt;line&gt;</span>
+                        <span>អង្គរវត្ត</span>
+                    </div>
+
+                    <div class="svg-center">
+                        <svg viewBox="0 0 600 390" width="500" height="325">
+                            <!-- ចំណីតខៀវខាងលើ -->
+                            <rect x="0" y="0" width="600" height="97" fill="#032EA1"/>
+                            <!-- ចំណីតក្រហមកណ្តាល -->
+                            <rect x="0" y="97" width="600" height="196" fill="#E00025"/>
+                            <!-- ចំណីតខៀវខាងក្រោម -->
+                            <rect x="0" y="293" width="600" height="97" fill="#032EA1"/>
+
+                            <!-- ប្រាសាទអង្គរវត្ត (ពណ៌ស) -->
+                            <!-- មូលដ្ឋាន -->
+                            <rect x="190" y="255" width="220" height="12" fill="#fff"/>
+                            <rect x="200" y="243" width="200" height="14" fill="#fff"/>
+                            <rect x="215" y="232" width="170" height="13" fill="#fff"/>
+
+                            <!-- ជាន់ទី២ -->
+                            <rect x="230" y="218" width="140" height="16" fill="#fff"/>
+
+                            <!-- ប៉មកណ្តាល -->
+                            <polygon points="300,130 285,205 315,205" fill="#fff"/>
+                            <rect x="286" y="205" width="28" height="15" fill="#fff"/>
+                            <polygon points="300,118 296,130 304,130" fill="#fff"/>
+                            <line x1="300" y1="110" x2="300" y2="118" stroke="#fff" stroke-width="2.5"/>
+
+                            <!-- ប៉មខាងឆ្វេងក្នុង -->
+                            <polygon points="262,162 250,205 274,205" fill="#fff"/>
+                            <rect x="251" y="205" width="22" height="15" fill="#fff"/>
+                            <polygon points="262,152 259,162 265,162" fill="#fff"/>
+                            <line x1="262" y1="146" x2="262" y2="152" stroke="#fff" stroke-width="2"/>
+
+                            <!-- ប៉មខាងស្តាំក្នុង -->
+                            <polygon points="338,162 326,205 350,205" fill="#fff"/>
+                            <rect x="327" y="205" width="22" height="15" fill="#fff"/>
+                            <polygon points="338,152 335,162 341,162" fill="#fff"/>
+                            <line x1="338" y1="146" x2="338" y2="152" stroke="#fff" stroke-width="2"/>
+
+                            <!-- ប៉មខាងឆ្វេងក្រៅ -->
+                            <polygon points="237,182 228,218 246,218" fill="#fff"/>
+                            <rect x="229" y="218" width="16" height="10" fill="#fff"/>
+                            <polygon points="237,174 235,182 239,182" fill="#fff"/>
+                            <line x1="237" y1="169" x2="237" y2="174" stroke="#fff" stroke-width="1.5"/>
+
+                            <!-- ប៉មខាងស្តាំក្រៅ -->
+                            <polygon points="363,182 354,218 372,218" fill="#fff"/>
+                            <rect x="355" y="218" width="16" height="10" fill="#fff"/>
+                            <polygon points="363,174 361,182 365,182" fill="#fff"/>
+                            <line x1="363" y1="169" x2="363" y2="174" stroke="#fff" stroke-width="1.5"/>
+
+                            <!-- ទ្វារ -->
+                            <rect x="290" y="257" width="20" height="10" fill="#E00025"/>
+                        </svg>
+                    </div>
+
+                    <div class="note">
+                        ទង់ជាតិត្រូវបានគូរដោយប្រើតែ <code>&lt;rect&gt;</code>, <code>&lt;polygon&gt;</code> និង <code>&lt;line&gt;</code> ប៉ុណ្ណោះ។
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- បាតកថា -->
+    <footer>
+        <p>សប្តាហ៍ទី៣ — HTML5 មេឌៀ និង ការបង្កប់</p>
+        <p>មុខវិជ្ជា អភិវឌ្ឍន៍កម្មវិធីវេបផ្រន់ខាងមុខ · ២០២៥–២០២៦</p>
+    </footer>
+
+    <!-- ចាវ៉ាស្គ្រីប -->
+    <script>
+        // ====== ផ្ទាំងគំនូរទី១៖ រូបរាងថេរ ======
+        var canvas1 = document.getElementById('canvasStatic');
+        var ctx = canvas1.getContext('2d');
+
+        // ផ្ទៃខាងក្រោយពណ៌ជម្រាល
+        var grad = ctx.createLinearGradient(0, 0, 500, 300);
+        grad.addColorStop(0, '#1a2a4a');
+        grad.addColorStop(1, '#2a4a7f');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 500, 300);
+
+        // ចតុកោណពេញ
+        ctx.fillStyle = '#f0a500';
+        ctx.fillRect(20, 20, 120, 70);
+        ctx.fillStyle = '#fff';
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('fillRect()', 80, 112);
+
+        // ចតុកោណគ្រោង
+        ctx.strokeStyle = '#6bb5ff';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(170, 20, 120, 70);
+        ctx.fillStyle = '#fff';
+        ctx.fillText('strokeRect()', 230, 112);
+
+        // រង្វង់
+        ctx.beginPath();
+        ctx.arc(380, 55, 38, 0, Math.PI * 2);
+        ctx.fillStyle = '#27ae60';
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = '#fff';
+        ctx.fillText('arc()', 380, 112);
+
+        // ត្រីកោណ
+        ctx.beginPath();
+        ctx.moveTo(70, 145);
+        ctx.lineTo(130, 240);
+        ctx.lineTo(10, 240);
+        ctx.closePath();
+        ctx.fillStyle = '#e74c3c';
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.fillText('Triangle', 70, 265);
+
+        // បន្ទាត់ទ្រេត
+        ctx.beginPath();
+        ctx.moveTo(170, 240);
+        ctx.lineTo(300, 150);
+        ctx.strokeStyle = '#ffd166';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.fillStyle = '#fff';
+        ctx.fillText('Line', 235, 265);
+
+        // អក្សរតុបតែង
+        ctx.font = 'bold 26px Arial';
+        ctx.fillStyle = '#f0a500';
+        ctx.fillText('Canvas 2D', 400, 185);
+        ctx.font = '14px Arial';
+        ctx.fillStyle = '#aaccee';
+        ctx.fillText('HTML5 Drawing API', 400, 210);
+        ctx.fillStyle = '#fff';
+        ctx.font = '12px Arial';
+        ctx.fillText('fillText()', 400, 265);
+
+        // ====== ផ្ទាំងគំនូរទី២៖ បាល់កំពុងលោត ======
+        var canvas2 = document.getElementById('canvasAnim');
+        var ctx2 = canvas2.getContext('2d');
+        var W = 500, H = 300;
+
+        var ball = {
+            x: 100,
+            y: 100,
+            r: 15,
+            dx: 3,
+            dy: 2.5,
+            color: '#3498db'
+        };
+
+        var colors = ['#3498db', '#e74c3c', '#27ae60', '#f0a500', '#9b59b6', '#e67e22'];
+        var colorIndex = 0;
+
+        function draw() {
+            // សម្អាត
+            ctx2.fillStyle = '#1a2a4a';
+            ctx2.fillRect(0, 0, W, H);
+
+            // ផ្លាស់ទីបាល់
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+            // លោតពេលប៉ះជញ្ជាំង
+            if (ball.x + ball.r > W || ball.x - ball.r < 0) {
+                ball.dx = -ball.dx;
+                colorIndex = (colorIndex + 1) % colors.length;
+                ball.color = colors[colorIndex];
+            }
+            if (ball.y + ball.r > H || ball.y - ball.r < 0) {
+                ball.dy = -ball.dy;
+                colorIndex = (colorIndex + 1) % colors.length;
+                ball.color = colors[colorIndex];
+            }
+
+            // គូរបាល់
+            ctx2.beginPath();
+            ctx2.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+            ctx2.fillStyle = ball.color;
+            ctx2.fill();
+
+            // ពន្លឺតូចលើបាល់
+            ctx2.beginPath();
+            ctx2.arc(ball.x - 4, ball.y - 4, 4, 0, Math.PI * 2);
+            ctx2.fillStyle = 'rgba(255,255,255,0.4)';
+            ctx2.fill();
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
+
+</body>
+</html>
